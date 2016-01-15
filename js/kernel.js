@@ -6,9 +6,10 @@
 
 var kernel = {
     config: {
-        json_domen: "http://sh.dev/",
-        yandex_auth: "OAuth 07d6f6ab0d9a487d9b4e0cfd4e91cb6e"
+        yandex_auth: "OAuth 07d6f6ab0d9a487d9b4e0cfd4e91cb6e",
+        domen:"http://sh.dev"
     },
+    
     css_r: {},
     css_load: function (url) {
         if (this.css_r[url] == undefined) {
@@ -48,8 +49,16 @@ var kernel = {
     },
     json_load: function (patch) {
         return $.parseJSON($.ajax({
-            url: this.config.json_domen + patch,
+            url: patch,
             async: false
         }).responseText);
+    },
+    page_load: function(patch){
+        var page = $.ajax({
+            url: patch,
+            async: false
+        }).responseText;
+        $("#jgjfgd").empty();
+        $("#jgjfgd").append(page);
     }
 };
